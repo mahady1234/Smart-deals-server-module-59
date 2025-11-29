@@ -16,7 +16,14 @@ const port = process.env.PORT || 5000
 // });
 
 const admin = require("firebase-admin");
-const serviceAccount = require("./module-55-smart-deals-website-firebase-admin.json");
+// const serviceAccount = require("./module-55-smart-deals-website-firebase-admin.json");
+
+// index.js
+const decoded = Buffer.from(process.env.FIREBASE_SERVICE_KEY, "base64").toString("utf8");
+const serviceAccount = JSON.parse(decoded);
+
+
+
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -126,6 +133,10 @@ async function run() {
 
 
         // jwt token getting
+        app.get("/", (req, res) => {
+            res.send("Server is running fine!");
+        });
+
 
         app.post('/getToken', (req, res) => {
             const loggedUser = req.body;
@@ -284,7 +295,7 @@ async function run() {
 
 
         // Send a ping to confirm a successful connection
-        await client.db("admin").command({ ping: 1 });
+        // await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
     }
