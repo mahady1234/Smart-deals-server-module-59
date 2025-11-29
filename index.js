@@ -133,9 +133,7 @@ async function run() {
 
 
         // jwt token getting
-        app.get("/", (req, res) => {
-            res.send("Server is running fine!");
-        });
+
 
 
         app.post('/getToken', (req, res) => {
@@ -248,20 +246,20 @@ async function run() {
             res.send(result)
         })
 
-        app.get('/bid', async (req, res) => {
-            const email = req.query.email;
-            const query = {}
-            if (email) {
-                query.buyer_email = email;
-            }
+        // app.get('/bid', async (req, res) => {
+        //     const email = req.query.email;
+        //     const query = {}
+        //     if (email) {
+        //         query.buyer_email = email;
+        //     }
 
-            if (email !== req.token_email) {
-                return res.status(401).send({ message: 'unable to access' })
-            }
-            const cursor = bidCollection.find(query)
-            const result = await cursor.toArray()
-            res.send(result)
-        })
+        //     if (email !== req.token_email) {
+        //         return res.status(401).send({ message: 'unable to access' })
+        //     }
+        //     const cursor = bidCollection.find(query)
+        //     const result = await cursor.toArray()
+        //     res.send(result)
+        // })
 
 
         // app.get('/bid', logger, handleFirebaseToken, async (req, res) => {
@@ -285,12 +283,7 @@ async function run() {
             res.send(result)
         })
 
-        app.delete('/bid/:id', async (req, res) => {
-            const id = req.params.id;
-            const query = { _id: new ObjectId(id) }
-            const result = await bidCollection.deleteOne(query)
-            res.send(result)
-        })
+       
 
 
 
@@ -308,6 +301,6 @@ async function run() {
 run().catch(console.dir)
 
 
-// app.listen(port, () => {
-//     console.log(`smart server is working on port:${port}`)
-// })
+app.listen(port, () => {
+    console.log(`smart server is working on port:${port}`)
+})
