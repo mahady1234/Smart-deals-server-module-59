@@ -124,7 +124,7 @@ app.get('/', (req, res) => {
 
 async function run() {
     try {
-        await client.connect();
+        // await client.connect();
 
         const db = client.db('smart-db')
         const productCollection = db.collection("products")
@@ -283,7 +283,7 @@ async function run() {
             res.send(result)
         })
 
-       
+
 
 
 

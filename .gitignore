@@ -1,5 +1,7 @@
 node_modules
-.env
 module-55-smart-deals-website-firebase-admin.json
 .vercel
 .env*.local
+temp_auto_push.bat
+temp_interactive_push.bat
+config.bat
